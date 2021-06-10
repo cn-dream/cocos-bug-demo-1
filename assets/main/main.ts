@@ -7,14 +7,19 @@ export class Main extends Component {
 
     start () {
         assetManager.loadBundle('pkg1', (err, bundle) => {
-            debugger
             if (err) {
                 return console.error(err)
             }
-            // console.log('bundle = ',bundle)
 
-            // var infos:any = []
-            // bundle.getDirWithPath('images', Texture2D, infos);
+            //加载spriteFrame会报错：Error: Bundle pkg1 doesn't contain hello
+            bundle.load('hello', SpriteFrame, null, (err, asset) => {
+                console.log('SpriteFrame = ',asset)
+                if(err){
+                    console.log(err)
+                }
+            
+            })
+
 
             bundle.load('prefab-1', Prefab, null, (err, asset) => {
                 console.log('asset = ',asset)
@@ -32,13 +37,7 @@ export class Main extends Component {
             
             })
 
-            bundle.load('hello', SpriteFrame, null, (err, asset) => {
-                console.log('SpriteFrame = ',asset)
-                if(err){
-                    console.log(err)
-                }
             
-            })
 
 
             
